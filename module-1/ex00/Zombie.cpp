@@ -1,14 +1,19 @@
-#include "../libfp.hpp"
 #include "Zombie.hpp"
+#include "../libfp/libfp.hpp"
+#include <iostream>
 
-zombie::zombie(std::string name)
+void Zombie::announce()
 {
-	std::cout << name << ": ";
-	log("Brainz");
+	std::cout << _name << ": ";
+	log("BraiiiiiiinnnzzzZ...");
 }
 
-int main()
+Zombie::Zombie(std::string const &name): _name(name)
 {
-	zombie zozo("Michel");
+	announce();
 }
 
+Zombie::~Zombie()
+{
+	std::cout << "Zombie " << _name << " died." << std::endl;
+}

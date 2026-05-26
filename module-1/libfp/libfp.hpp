@@ -1,4 +1,4 @@
 #pragma once
-#include "string"
-#include "iostream"
+#include <string>
 void log(std::string const &msg);
+std::string generateRandomName();

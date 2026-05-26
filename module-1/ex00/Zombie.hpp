@@ -1,13 +1,16 @@
 #pragma once
 #include <string>
-#include <iostream>
 
-class zombie
+class Zombie
 {
 	public:
-		zombie(std::string name);
+		Zombie(std::string const &name);
+		~Zombie();
+		void announce();
 	private:
-		std::string name;
+		std::string _name;
 };
 
 
+void randomChump( std::string name );
+void moreChumps(int chumps);
