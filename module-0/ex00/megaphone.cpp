@@ -5,13 +5,16 @@ int main(int argc, char *argv[])
 {
 	if (argc == 1)
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK*";
-	for (int i = 1; i < argc; i++)
+	else
 	{
-		for (int j = 0; argv[i][j]; j++)
+		for (int i = 1; i < argc; i++)
 		{
-			argv[i][j] = toupper(argv[i][j]);
+			for (int j = 0; argv[i][j]; j++)
+			{
+				argv[i][j] = toupper(argv[i][j]);
+			}
+			std::cout << argv[i];
 		}
-			std::cout << argv[i] << " ";
 	}
 	std::cout << std::endl;
 }
