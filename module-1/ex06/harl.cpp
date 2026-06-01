@@ -1,18 +1,4 @@
-#include <string>
-#include <iostream>
-
-class Harl
-{
-	private:
-		void debug();
-		void info();
-		void warning();
-		void error();
-		void insignifiant();
-
-	public:
-		void complain(std::string level);
-};
+#include "Harl.hpp"
 
 void Harl::debug()
 {
@@ -88,15 +74,4 @@ void Harl::complain(std::string level)
 		case 3:
 			Harl::error();
 	}
-}
-
-int main()
-{
-	Harl h;
-	h.complain("DEBUG");
-//	h.complain("INFO");
-//	h.complain("WARNING");
-	//h.complain("ERROR");
-//	h.complain("");
-	return 0;
 }
