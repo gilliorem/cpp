@@ -41,3 +41,8 @@ void PhoneBook::displayContacts()
 	//std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // flush
 	contact[num].logAllInfo();	
 }
+
+void displayAttribute(std::string& attribute, std::string& attributeValue)
+{
+	std::cout << std::setw(10) << attribute << ":" << std::setw(10) << attributeValue << "|";
+}

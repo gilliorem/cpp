@@ -4,7 +4,7 @@
 int main(int argc, char *argv[])
 {
 	if (argc == 1)
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK*";
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK *";
 	else
 	{
 		for (int i = 1; i < argc; i++)

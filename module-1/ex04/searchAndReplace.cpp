@@ -2,15 +2,6 @@
 #include <iostream>
 #include <fstream>
 
-/* Get the end index to skip to the end part that doesn't have 'search': we move the base until we can't find search and we store the endIndex */
-
-std::string getBegBase(const std::string& base, const std::string& search)
-{
-	std::string begBase;
-	begBase = base.substr(0, base.find(search));
-	return begBase;
-}
-
 /* Pos is `base.find(search)` , len is `search.length()` (how many characters we put out) */
 std::string my_replace(const std::string& base, size_t pos, size_t len, const std::string& replace)
 {
