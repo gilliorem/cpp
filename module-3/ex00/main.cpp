@@ -5,9 +5,8 @@ int main()
 	ClapTrap a("Remi");
 	ClapTrap b("Yuchi");
 
-	std::string target = "Remi";
-	b.attack(target);
-
-	a.takeDamage(1);
-	a.beRepared(1);
+	std::string target = "Yuchi";
+	a.attack(target);
+	b.takeDamage(0);
+	b.beRepaired(1);
 }

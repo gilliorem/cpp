@@ -1,18 +1,30 @@
 #include "ScavTrap.hpp"
 #include <iostream>
 
-ScavTrap::ScavTrap()
+ScavTrap::ScavTrap(): ClapTrap()
 {
+	this->_hitPoints = 100;
+	this->_energyPoints = 50;
+	this->_attackDamage = 20;
+	
 	std::cout << "ScavTrap created using the default constructor\n";
 }
 
-ScavTrap::ScavTrap(const std::string& name):_name(name),_hitPoints(100), _energyPoints(50), _attackDamage(20)
+ScavTrap::ScavTrap(const std::string& name): ClapTrap(name)
 {
+	this->_hitPoints = 100;
+	this->_energyPoints = 50;
+	this->_attackDamage = 20;
 	std::cout << "ScavTrap " << _name << " was created\n";
 }
 
-ScavTrap::ScavTrap(const ScavTrap& other):_name(other._name), _hitPoints(other._hitPoints), _energyPoints(other._energyPoints), _attackDamage(other._attackDamage)
+ScavTrap::ScavTrap(const ScavTrap& other)
 {
+	this->_name = other._name;
+	this->_hitPoints = other._hitPoints;
+	this->_energyPoints = other._energyPoints;
+	this->_attackDamage = other._attackDamage;
+
 	std::cout << "ScavTrap Copy constructor called\n";
 }
 

@@ -7,7 +7,7 @@ int main()
 	std::string yuchi = "Yuchi";
 	a.attack(yuchi);
 	b.takeDamage(30);
-	b.beRepared(10);
+	b.beRepaired(10);
 
 	a.highFivesGuys();
 }

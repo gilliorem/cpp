@@ -2,12 +2,6 @@
 
 class FragTrap : public ClapTrap
 {
-	private:
-		std::string _name;
-		unsigned int _hitPoints;
-		unsigned int _energyPoints;
-		unsigned int _attackDamage;
-
 	public:
 		FragTrap();
 		FragTrap(const std::string& name);
@@ -15,6 +9,5 @@ class FragTrap : public ClapTrap
 		FragTrap& operator=(const FragTrap &clapTrap);
 		~FragTrap();
 		
-		void	attack(std::string& target);
 		void	highFivesGuys();
 };

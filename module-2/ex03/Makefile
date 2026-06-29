@@ -1,11 +1,11 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = fragtrap
+NAME = bsp
 
-SOURCES = FragTrap.cpp ScavTrap.cpp ClapTrap.cpp main.cpp 
+SOURCES = main.cpp Fixed.cpp Point.cpp bsp.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
-HEADERS = FragTrap.hpp ScavTrap.hpp ClapTrap.hpp
+HEADERS = Fixed.hpp Point.hpp
 
 all: $(NAME)
 
