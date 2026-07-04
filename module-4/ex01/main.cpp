@@ -1,19 +1,25 @@
 #include "Animal.hpp"
 #include <iostream>
-/*
 int main()
 {
-	Animal animals[4];
+	//Animal animals[4];
+
+	Animal* animals[4];
 	
 	for (int i = 0; i < 4; i++)
 	{
 		if (i % 2 == 0)
-		{
-			animals[i] = Cat();
-		}
+			animals[i] = new Cat();
 		else
-			animals[i] = Dog();
+			animals[i] = new Dog();
 	}
+	for (int i = 0; i < 4; ++i)
+	{
+		animals[i]->makeSound();
+	}
+
+	for (int i = 0; i < 4; ++i)
+		delete animals[i];
 
 	Cat cats[2];
 	std::cout << "first cat idea: " << cats[0].getIdea(0) << std::endl;
@@ -30,14 +36,6 @@ int main()
 	std::cout << "cat c idea: " << c.getIdea(0) << std::endl;
 
 
-
-
-	return 0;
-}
-*/
-
-int main()
-{
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
 	delete j;//should not create a leak

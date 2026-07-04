@@ -19,5 +19,11 @@ int main()
 	std::cout << wrongCat->getType() << std::endl;
 	wrongCat->makeSound();
 
+	delete meta;
+	delete i;
+	delete j;
+	delete wrongCat;
+	
+
 	return 0;
 }

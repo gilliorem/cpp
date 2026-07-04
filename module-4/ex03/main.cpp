@@ -21,7 +21,7 @@ int main()
 	delete src;
 
 	/* uncomment the line below to run more test */
-	//return 0;
+	return 0;
 
 	AMateria* materia = new Ice("ice");
 	AMateria* clone = materia->clone();
@@ -35,21 +35,23 @@ int main()
 
 	std::cout << "===== Character creation =====" << std::endl;
 
-	/* Uncomment the 2 lines below to run test using memory stack */
-	//Character mandrag("Mandragold");
-	//Character mandrar("Mandrage");
-	Character* mandrag = new Character("Mandragold");
-	Character* mandrar = new Character("Mandrage");
+	Character mandrag("Mandragold");
+	Character mandrar("Mandrage");
 
-	mandrag->equip(materia);
-	mandrag->use(0, *mandrar);
-	mandrar->equip(cureClone);
-	mandrar->use(0, *mandrar);
+	mandrag.equip(materia);
+	mandrag.use(0, mandrar);
+	mandrar.equip(cureClone);
+	mandrar.use(0, mandrar);
 
 	std::cout << "===== Materia Source =====" << std::endl;
 
 	MateriaSource* source = new MateriaSource();
 	source->learnMateria(new Ice("ice"));
 	source->learnMateria(new Cure("cure"));
+
+	delete materia;
+	delete clone;
+	delete cureMateria;
+	delete source;
 	return 0;
 }

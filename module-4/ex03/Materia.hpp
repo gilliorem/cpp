@@ -54,7 +54,7 @@ class IMateriaSource
 		virtual AMateria* createMateria(const std::string& type) = 0;
 };
 
-class MateriaSource
+class MateriaSource: public IMateriaSource
 {
 	private:
 		AMateria*	_skillSet[4];	
