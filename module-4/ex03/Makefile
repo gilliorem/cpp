@@ -3,9 +3,9 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = materia
 
-SOURCES = main.cpp
+SOURCES = main.cpp Materia.cpp Character.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
-HEADERS = 
+HEADERS = Materia.hpp Character.hpp
 
 all: $(NAME)
 
