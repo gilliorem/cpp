@@ -4,12 +4,12 @@
 
 Bureaucrat::Bureaucrat():_name("Default"), _grade(150)
 {
-	std::cout << this->_name << " Bureaucrat created with default grade:" << this->_grade << std::endl;
+	std::cout << "Bureaucrat "<< this->_name << " created with default grade:" << this->_grade << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other):_name(other._name), _grade(other._grade)
 {
-	std::cout << this->_name << " Bureaucrat: [" << this << "] was creating using the copy constructor. Other bureaucrat used as reference: " << other._name << " [" << &other << "]\n";
+	std::cout << "Bureaucrat " << this->_name << " :[" << this << "] was creating using the copy constructor. Other bureaucrat used as reference: " << other._name << " [" << &other << "]\n";
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
@@ -18,7 +18,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 		return *this;
 	this->_name = other._name;
 	this->_grade = other._grade;
-	std::cout << this->_name << " Bureaucrat: [" << this << "] attributes were assigned using the operator overload '='. Other bureaucrat used as reference: " << other._name << " [" << &other << "]\n";
+	std::cout << "Bureaucrat "<< this->_name << " : [" << this << "] attributes were assigned using the operator overload '='. Other bureaucrat used as reference: " << other._name << " [" << &other << "]\n";
 	return *this;
 }
 
@@ -30,11 +30,11 @@ Bureaucrat::Bureaucrat(const std::string& name, const int& grade):_name(name), _
 		throw GradeTooHighException();	
 	if (grade > 150)
 		throw GradeTooLowException();	
-	std::cout << this->_name << " created using perso constructor with grade: " << this->_grade << std::endl;
+	std::cout << "Bureaucrat "<< this->_name << " created using perso constructor with grade: " << this->_grade << std::endl;
 }
 std::ostream& operator<<(std::ostream &o, const Bureaucrat& b)
 {
-	o << b.getName() << ", bureaucrat grade: " << b.getGrade() ;
+	o << "Bureaucrat "<< b.getName() << ", Grade: " << b.getGrade() ;
 	return o;
 }
 
@@ -58,21 +58,22 @@ const char* Bureaucrat::GradeTooLowException::log() const
 	return "Grade is too low";
 }
 
-void Bureaucrat::signForm(Bureaucrat& b, Form& f)
+void Bureaucrat::signForm(Bureaucrat& b, Form* f)
 {
 	try
 	{
-		f.getSigned(&f);
-		std::cout << b._name << " signed " << f.getName() << std::endl;
+		f->beSigned(b);
+		std::cout << "Bureaucrat " << b._name << " signed " << f->getName() << " form."<< std::endl;
 	}
 	catch (Form::GradeTooHighException& e)
 	{
-		std::cout << b._name << " couldn't sign " << f.getName() << " because " ;
-		std::cout << "GradeTooHighException: " << e.log() << std::endl;
+		std::cout << "Bureaucrat " << b._name << " couldn't sign " << f->getName() << " form. Because " 
+			<< "His grade is too high: " << e.log() << std::endl;
 	}
 	catch (Form::GradeTooLowException& e)
 	{
-		std::cout << b._name << " couldn't sign " << f.getName() << " because " ;
+		std::cout << "Bureaucrat " << b._name << " couldn't sign " << f->getName() << " because " ;
 		std::cout << "GradeTooLowException: " << e.log() << std::endl;
 	}
 }
+
