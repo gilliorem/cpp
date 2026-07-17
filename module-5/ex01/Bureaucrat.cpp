@@ -1,14 +1,14 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <iostream>
 
 Bureaucrat::Bureaucrat():_name("Default"), _grade(150)
 {
-	std::cout << this->_name << " created with default grade:" << this->_grade << std::endl;
+	std::cout << this->_name << " Bureaucrat created with default grade:" << this->_grade << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& other)
+Bureaucrat::Bureaucrat(const Bureaucrat& other):_name(other._name), _grade(other._grade)
 {
-	*this = other;
 	std::cout << this->_name << " Bureaucrat: [" << this << "] was creating using the copy constructor. Other bureaucrat used as reference: " << other._name << " [" << &other << "]\n";
 }
 
@@ -18,7 +18,6 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 		return *this;
 	this->_name = other._name;
 	this->_grade = other._grade;
-	*this = other;
 	std::cout << this->_name << " Bureaucrat: [" << this << "] attributes were assigned using the operator overload '='. Other bureaucrat used as reference: " << other._name << " [" << &other << "]\n";
 	return *this;
 }
@@ -44,7 +43,7 @@ const std::string& Bureaucrat::getName() const
 	return this->_name;
 }
 
-int Bureaucrat::getGrade() const
+unsigned int Bureaucrat::getGrade() const
 {
 	return this->_grade;
 }
@@ -59,3 +58,21 @@ const char* Bureaucrat::GradeTooLowException::log() const
 	return "Grade is too low";
 }
 
+void Bureaucrat::signForm(Bureaucrat& b, Form& f)
+{
+	try
+	{
+		f.getSigned(&f);
+		std::cout << b._name << " signed " << f.getName() << std::endl;
+	}
+	catch (Form::GradeTooHighException& e)
+	{
+		std::cout << b._name << " couldn't sign " << f.getName() << " because " ;
+		std::cout << "GradeTooHighException: " << e.log() << std::endl;
+	}
+	catch (Form::GradeTooLowException& e)
+	{
+		std::cout << b._name << " couldn't sign " << f.getName() << " because " ;
+		std::cout << "GradeTooLowException: " << e.log() << std::endl;
+	}
+}
