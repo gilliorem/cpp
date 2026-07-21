@@ -8,7 +8,8 @@ int main()
 	Form f("Feedback", 51, 40);
 
 	// Remi should not be able to sign this form.
-	// because his grade is too low compared to the form's grade.
+	// because 
+	// Remi sucks.
 	b.signForm(b, &f);
 	
 	return 0;
