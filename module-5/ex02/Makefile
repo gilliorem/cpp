@@ -3,9 +3,9 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = bureaucrat
 
-SOURCES = main.cpp Bureaucrat.cpp Form.cpp
+SOURCES = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
-HEADERS = Bureaucrat.hpp Form.hpp
+HEADERS = Bureaucrat.hpp Form.hpp ShrubberyCreationForm.hpp
 
 all: $(NAME)
 

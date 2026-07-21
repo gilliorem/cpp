@@ -4,11 +4,15 @@
 
 int main()
 {
-	ShrubberyCreationForm a;
+	Bureaucrat b("Remi", 146);
+	AForm *a = new ShrubberyCreationForm();
 
-	//ShrubberyCreationForm b = a;
+	std::cout << a->getGradeToSign() << std::endl;
+	std::cout << a->getGradeToExecute() << std::endl;
 
-	//AForm a;
+	b.signForm(a); // should not be able to sign...
+	
+	
 	
 	return 0;
 }

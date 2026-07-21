@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <iostream>
 
 Bureaucrat::Bureaucrat():_name("Default"), _grade(150)
@@ -58,21 +58,27 @@ const char* Bureaucrat::GradeTooLowException::log() const
 	return "Grade is too low";
 }
 
-void Bureaucrat::signForm(Bureaucrat& b, Form* f)
+void Bureaucrat::signForm(AForm* f)
 {
+	/*
+	std::cout << *this << "will try to sign " << f->getName() << std::endl;
+	std::cout << "Bureaucrat's grade: " << this->_grade << std::endl;
+	std::cout << "Form's grade to sign:" << f->getGradeToSign() << std::endl;
+	std::cout << "Form's grade to execute:" << f->getGradeToExecute() << std::endl;
+	*/
 	try
 	{
-		f->beSigned(b);
-		std::cout << "Bureaucrat " << b._name << " signed " << f->getName() << " form."<< std::endl;
+		f->beSigned(*this);
+		std::cout << "Bureaucrat " << this->_name << " signed " << f->getName() << " form."<< std::endl;
 	}
-	catch (Form::GradeTooHighException& e)
+	catch (AForm::GradeTooHighException& e)
 	{
-		std::cout << "Bureaucrat " << b._name << " couldn't sign " << f->getName() << " form. Because " 
+		std::cout << "Bureaucrat " << this->_name << " couldn't sign " << f->getName() << " form. Because " 
 			<< "His grade is too high: " << e.log() << std::endl;
 	}
-	catch (Form::GradeTooLowException& e)
+	catch (AForm::GradeTooLowException& e)
 	{
-		std::cout << "Bureaucrat " << b._name << " couldn't sign " << f->getName() << " because " 
+		std::cout << "Bureaucrat " << this->_name << " couldn't sign " << f->getName() << " because " 
 		<< "his grade is too low: " << e.log() << std::endl;
 	}
 }

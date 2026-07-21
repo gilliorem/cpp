@@ -15,16 +15,16 @@ class AForm
 		AForm(const AForm& other);
 		AForm& operator=(const AForm& other);
 		AForm(const std::string& name, const unsigned int gradeToSign, const unsigned int gradeToExecute);
-		virtual ~AForm();
+		virtual ~AForm() = 0;
 
 		virtual const std::string& getName() const = 0;
-		unsigned int getGradeToSign() const;
-		unsigned int getGradeToExecute() const;
+		virtual unsigned int getGradeToSign() const = 0;
+		virtual unsigned int getGradeToExecute() const = 0;
 
 		/* To be able to use a pointer to the form instance I use the parameter `self` */
 		static bool getSigned(AForm* self);
 
-		void beSigned(Bureaucrat& b) ;
+		virtual void beSigned(Bureaucrat& b) = 0;
 
 		class GradeTooHighException: public std::exception
 		{

@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -24,7 +24,7 @@ class Bureaucrat
 		const std::string& getName() const;
 		unsigned int getGrade() const;
 
-		void signForm(Bureaucrat& b, Form* f);
+		void signForm(AForm* f);
 
 		class GradeTooHighException: public std::exception
 		{
