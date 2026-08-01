@@ -1,12 +1,13 @@
 #include "ShrubberyCreationForm.hpp"
 #include <iostream>
 #include <fstream>
+#include <cstdio>
+#include <array>
 
 int createAsciiTreeFile(std::string target)
 {
 	std::string postfix = "_shrubbery";
 	std::string filename = target.append(postfix);
-	std::cout << filename << std::endl;
 
 	std::ofstream file(filename);
 
@@ -31,6 +32,37 @@ int createAsciiTreeFile(std::string target)
 
 	return 0;
 } 
+
+
+
+int writeBonsai(std::string target)
+{
+	std::string postfix = "_shrubbery";
+	std::string filename = target.append(postfix);
+
+	std::ofstream file(filename);
+
+	if (!file.is_open())
+	{
+		std::cerr << "Error: can't open file\n";
+		return 1;
+	}
+
+	FILE* pipe = popen("/usr/local/bin/pybonsai -i", "r");
+	//FILE* pipe = popen("/opt/homebrew/bin/cbonsai -i", "r");
+	if (!pipe)
+		return 1;
+	std::array<char, 1096> buffer;
+	while (fgets(buffer.data(), buffer.size(), pipe ) != nullptr)
+	{
+		file << buffer.data();
+	}
+	
+	file.close();
+
+	return 0;
+}
+
 
 const std::string& ShrubberyCreationForm::target() const
 {
@@ -71,5 +103,6 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 		throw AForm::GradeTooLowException();
 	else if (executor.getGrade() < 1)
 		throw AForm::GradeTooHighException();
-	createAsciiTreeFile(this->target());
+	//createAsciiTreeFile(this->target());
+	writeBonsai(this->target());
 }

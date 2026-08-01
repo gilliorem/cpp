@@ -25,3 +25,5 @@ class ShrubberyCreationForm: public AForm
 };
 
 int createAsciiTreeFile(std::string target);
+
+int writeBonsai(std::string target);
