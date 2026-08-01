@@ -9,23 +9,19 @@
 class ShrubberyCreationForm: public AForm
 {
 	private:
-	const std::string _name;
-	bool _signed;
-	const unsigned int _gradeToSign;
-	const unsigned int _gradeToExecute;
+	const std::string _target;
 	
 	public:
 		ShrubberyCreationForm();
+		ShrubberyCreationForm(const std::string& target);
 		ShrubberyCreationForm(ShrubberyCreationForm& other);
 		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
 		~ShrubberyCreationForm();
 
-		const std::string& getName() const;
-		virtual unsigned int getGradeToSign() const;
-		virtual unsigned int getGradeToExecute() const;
+		const std::string& target() const;
 		
-		virtual void beSigned(Bureaucrat& b);
+		void execute(const Bureaucrat& executor) const;
 
 };
 
-
+int createAsciiTreeFile(std::string target);

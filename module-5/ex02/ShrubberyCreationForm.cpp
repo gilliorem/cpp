@@ -1,56 +1,75 @@
 #include "ShrubberyCreationForm.hpp"
 #include <iostream>
+#include <fstream>
 
-ShrubberyCreationForm::ShrubberyCreationForm():_name("Shrubbery Creation Form"), _signed(false), _gradeToSign(145), _gradeToExecute(137)
+int createAsciiTreeFile(std::string target)
 {
-	std::cout << this->_name << " created using Default constructor with Grade to Sign:" << this->_gradeToSign << "| grade to execute:" << this->_gradeToExecute << std::endl; 
+	std::string postfix = "_shrubbery";
+	std::string filename = target.append(postfix);
+	std::cout << filename << std::endl;
+
+	std::ofstream file(filename);
+
+	if (!file.is_open())
+	{
+		std::cerr << "Error: could not open file\n";
+		return 1;
+	}
+
+	for (int i = 0; i < 3; ++i)
+	{
+		file << "   @  \n";
+		file << "  @@@ \n";
+		file << " @@@@ \n";
+		file << "@@@@@@\n";
+		file << "  ||\n";
+		file << "  ||\n";
+		file << "  ||\n";
+
+	}
+	file.close();
+
+	return 0;
+} 
+
+const std::string& ShrubberyCreationForm::target() const
+{
+	return this->_target;
 }
 
-
-ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm& other): _name(other._name), _signed(other._signed), _gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute)
+ShrubberyCreationForm::ShrubberyCreationForm():AForm("Shrubbery Creation Form", 145, 137), _target("default_target")
 {
-	std::cout << this->_name << " created using the copy constructor.\n"; 
+	std::cout << this->getName() << " created using Default constructor with Grade to Sign:" << this->getGradeToSign() << "| grade to execute:" << this->getGradeToExecute() << std::endl; 
+}
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target):AForm("Shrubbery Creation Form", 145, 137), _target(target)
+{
+	std::cout << this->getName() << " created with this grade to sign: " << this->getGradeToSign() << " and this grade to execute: " << this->getGradeToExecute() << std::endl;	
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm& other): AForm(other)
+{
+	std::cout << this->getName() << " created using the copy constructor.\n"; 
 }
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
 {
 	if (this == &other)
 		return *this;
-	this->_signed = other._signed;
-	std::cout << "Copy assignement operator called.\n";
+	AForm::operator=(other);
+	std::cout << "Copy assignment operator called.\n";
 	return *this;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-	std::cout << this->_name << " destroyed.\n";
+	std::cout << this->getName() << " destroyed.\n";
 }
 
-const std::string& ShrubberyCreationForm::getName() const
+void ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 {
-	return this->_name;
-}
-
-unsigned int ShrubberyCreationForm::getGradeToSign() const 
-{
-	return this->_gradeToSign;
-}
-
-unsigned int ShrubberyCreationForm::getGradeToExecute() const 
-{
-	return this->_gradeToExecute;
-}
-
-void ShrubberyCreationForm::beSigned(Bureaucrat& b)
-{
-	if (b.getGrade() < 1) 
-		throw GradeTooHighException();
-	else if (b.getGrade() > this->_gradeToSign || b.getGrade() > 150)
-	{
-		throw GradeTooLowException();
-	}
-	else
-	{
-		this->_signed = true;
-	}
+	if (executor.getGrade() > this->getGradeToSign())
+		throw AForm::GradeTooLowException();
+	else if (executor.getGrade() < 1)
+		throw AForm::GradeTooHighException();
+	createAsciiTreeFile(this->target());
 }
