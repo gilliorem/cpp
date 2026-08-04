@@ -2,14 +2,13 @@
 #include <iostream>
 #include <fstream>
 #include <cstdio>
-#include <array>
 
 int createAsciiTreeFile(std::string target)
 {
 	std::string postfix = "_shrubbery";
 	std::string filename = target.append(postfix);
 
-	std::ofstream file(filename);
+	std::ofstream file(filename.c_str());
 
 	if (!file.is_open())
 	{
@@ -34,13 +33,12 @@ int createAsciiTreeFile(std::string target)
 } 
 
 
-
 int writeBonsai(std::string target)
 {
 	std::string postfix = "_shrubbery";
 	std::string filename = target.append(postfix);
 
-	std::ofstream file(filename);
+	std::ofstream file(filename.c_str());
 
 	if (!file.is_open())
 	{
@@ -48,14 +46,23 @@ int writeBonsai(std::string target)
 		return 1;
 	}
 
-	FILE* pipe = popen("/usr/local/bin/pybonsai -i", "r");
-	//FILE* pipe = popen("/opt/homebrew/bin/cbonsai -i", "r");
+	FILE* pipe = popen("/home/regillio/.local/bin/pybonsai -i", "r");
+	//FILE* pipe = popen("/usr/local/bin/pybonsai -i", "r"); // MAC OS
 	if (!pipe)
 		return 1;
+	/*
 	std::array<char, 1096> buffer;
+	//char *buffer = (char *) malloc(1026);
 	while (fgets(buffer.data(), buffer.size(), pipe ) != nullptr)
 	{
 		file << buffer.data();
+	}
+	*/
+
+	char c_buffer[4096];
+	while (fgets(c_buffer, sizeof(c_buffer), pipe) != NULL)
+	{
+		file << c_buffer;
 	}
 	
 	file.close();

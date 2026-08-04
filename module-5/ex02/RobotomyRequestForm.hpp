@@ -1,6 +1,5 @@
 #pragma once
 #include "AForm.hpp"
-
 /* _gradeToSign: 72 
  * _gradeToExecute: 45 
  * Makes some drilling noises, then informs that <target> has been robotomized
@@ -25,4 +24,4 @@ class RobotomyRequestForm: public AForm
 
 };
 
-void makeDrillingNoise();
+int makeDrillingNoise();

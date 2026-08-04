@@ -1,18 +1,19 @@
-CXX = c++ -g
-CXXFLAGS = -Wall -Wextra -Werror -std=c++20
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+AUDIOFLAGS = -lpthread -lm
 
 NAME = bureaucrat
 
-SOURCES = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp
+SOURCES = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp miniaudio.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
-HEADERS = Bureaucrat.hpp Form.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp
+HEADERS = Bureaucrat.hpp Form.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp miniaudio.h
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $(NAME)
+	$(CXX)  $(CXXFLAGS) $(AUDIOFLAGS) $(OBJECTS) -o $(NAME)
 %.o: %.cpp $(HEADERS)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(AUDIOFLAGS) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJECTS) *target_shrubbery

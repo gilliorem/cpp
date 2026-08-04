@@ -6,7 +6,8 @@
 int main()
 {
 	Bureaucrat b("Remi", 4);
-	AForm *a = new ShrubberyCreationForm(); // should not create a file
+//	AForm *a = new ShrubberyCreationForm(); // should not create a file
+	AForm *a = new RobotomyRequestForm(); // should not create a file
 	
 	a->execute(b);
 	return 0;

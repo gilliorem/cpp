@@ -2,10 +2,29 @@
 #include "RobotomyRequestForm.hpp"
 #include <iostream>
 #include <ctime>
+#include "miniaudio.h"
+#include <cstdio>
 
-void makeDrillingNoise()
+int makeDrillingNoise()
 {
-	std::system("afplay ./drilling_sound.mp3");	
+	//std::system("afplay ./drilling_sound.mp3");	 // MAC OS
+
+	ma_result result;
+	ma_engine engine;
+
+	result = ma_engine_init(NULL, &engine);
+	if (result != MA_SUCCESS)
+		return -1;
+
+	ma_engine_play_sound(&engine, "drilling_sound.wav", NULL);
+	std::cout << "BzzzZZZzzZZzzzzzzzzzzZZZZZzzzzzzzzzz\n";
+	std::cout << "Press q to quit...";
+	char c;
+	if (std::cin >> c) std::cout << "exit\n";
+
+	ma_engine_uninit(&engine);
+
+	return 0;
 } 
 
 const std::string& RobotomyRequestForm::target() const
