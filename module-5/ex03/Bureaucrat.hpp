@@ -1,0 +1,41 @@
+#pragma once
+#include <string>
+
+class AForm;
+
+class Bureaucrat
+{
+	private: 
+		std::string _name;
+		unsigned int _grade;
+		Bureaucrat& operator=(const Bureaucrat& other);
+	
+	public:
+
+		Bureaucrat();
+		Bureaucrat(const Bureaucrat& other);
+		~Bureaucrat();
+
+		Bureaucrat(const std::string& name, const int& grade);
+
+		Bureaucrat& operator++();
+		Bureaucrat operator++(int);
+		
+		const std::string& getName() const;
+		unsigned int getGrade() const;
+
+		void signForm(AForm* f);
+
+		class GradeTooHighException: public std::exception
+		{
+			public:
+				virtual const char* log() const;
+		};
+		class GradeTooLowException: public std::exception
+		{
+			public:
+				virtual const char* log() const;
+		};
+};
+
+std::ostream& operator<<(std::ostream &o, const Bureaucrat& b);
