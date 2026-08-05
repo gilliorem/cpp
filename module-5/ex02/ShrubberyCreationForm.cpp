@@ -49,16 +49,9 @@ int writeBonsai(std::string target)
 	FILE* pipe = popen("/home/regillio/.local/bin/pybonsai -i", "r");
 	//FILE* pipe = popen("/usr/local/bin/pybonsai -i", "r"); // MAC OS
 	if (!pipe)
-		return 1;
-	/*
-	std::array<char, 1096> buffer;
-	//char *buffer = (char *) malloc(1026);
-	while (fgets(buffer.data(), buffer.size(), pipe ) != nullptr)
 	{
-		file << buffer.data();
+		return 1;
 	}
-	*/
-
 	char c_buffer[4096];
 	while (fgets(c_buffer, sizeof(c_buffer), pipe) != NULL)
 	{
@@ -67,6 +60,7 @@ int writeBonsai(std::string target)
 	
 	file.close();
 
+	pclose(pipe);
 	return 0;
 }
 

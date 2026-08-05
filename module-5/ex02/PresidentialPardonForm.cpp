@@ -3,7 +3,7 @@
 
 void pardon(const std::string& target)
 {
-	std::cout << target << " has been forgiven\n";
+	std::cout << target << " has been pardoned by Zaphod Beeblebrox.\n";
 } 
 
 const std::string& PresidentialPardonForm::target() const

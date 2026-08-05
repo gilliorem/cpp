@@ -4,9 +4,9 @@ AUDIOFLAGS = -lpthread -lm
 
 NAME = bureaucrat
 
-SOURCES = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp miniaudio.cpp
+SOURCES = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp miniaudio.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
-HEADERS = Bureaucrat.hpp Form.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp miniaudio.h
+HEADERS = Bureaucrat.hpp Form.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp miniaudio.h
 
 all: $(NAME)
 
