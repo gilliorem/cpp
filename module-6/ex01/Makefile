@@ -3,9 +3,9 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = serializer
 
-SOURCES = serialize.cpp
+SOURCES = Serializer.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
-HEADERS = 
+HEADERS = Serializer.hpp
 
 all: $(NAME)
 
