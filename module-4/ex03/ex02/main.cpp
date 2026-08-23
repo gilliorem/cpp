@@ -2,6 +2,7 @@
 #include <iostream>
 int main()
 {
-	//AAnimal animal* =  new Animal();
+	AAnimal *animal =  new AAnimal();
+	//AAnimal a;
 	return 0;	
 }

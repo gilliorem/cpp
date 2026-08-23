@@ -14,6 +14,8 @@ int main()
 	AForm* formPtr;	
 
 	formPtr = intern.makeForm("robotomy request", "home");
+	if (!formPtr)
+		return 0;
 
 	Bureaucrat bureaucrat("Jean-Michel", 42);
 
@@ -21,6 +23,7 @@ int main()
 
 	formPtr->execute(bureaucrat);
 
+	delete formPtr;
 	return 0;
 	
 	Bureaucrat b("Remi", 4);

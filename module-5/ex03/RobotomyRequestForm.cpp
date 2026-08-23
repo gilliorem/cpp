@@ -1,4 +1,3 @@
-#include <cstdlib>
 #include "RobotomyRequestForm.hpp"
 #include <iostream>
 #include <ctime>
@@ -18,9 +17,9 @@ int makeDrillingNoise()
 
 	ma_engine_play_sound(&engine, "drilling_sound.wav", NULL);
 	std::cout << "BzzzZZZzzZZzzzzzzzzzzZZZZZzzzzzzzzzz\n";
-	std::cout << "Press q & Enter to quit...";
-	char c;
-	if (std::cin >> c) std::cout << "exit\n";
+	std::cout << "Enter to quit...";
+	std::cin.get();
+	std::cout << "exit\n";
 
 	ma_engine_uninit(&engine);
 

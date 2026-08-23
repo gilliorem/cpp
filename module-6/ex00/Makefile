@@ -1,11 +1,11 @@
 CXX = c++ -g
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = bureaucrat
+NAME = convert
 
-SOURCES = main.cpp Bureaucrat.cpp 
+SOURCES = main.cpp ScalarConverter.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
-HEADERS = Bureaucrat.hpp
+HEADERS = ScalarConverter.hpp
 
 all: $(NAME)
 

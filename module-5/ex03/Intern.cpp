@@ -9,7 +9,7 @@
 Intern::Intern() {}
 Intern::~Intern() {}
 
-AForm* Intern::makeForm(std::string formName, std::string formTarget)
+AForm* Intern::makeForm(const std::string& formName, const std::string& formTarget)
 {
 	AForm* formptr = NULL;
 	std::string formNames[] = 
@@ -47,6 +47,7 @@ AForm* Intern::makeForm(std::string formName, std::string formTarget)
 			break;
 		default:
 			std::cout << "Error: "<< formName << " form does not exist\n";
+			return NULL;
 	}
 	return formptr;
 }

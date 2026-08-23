@@ -9,5 +9,5 @@ class Intern
 		Intern();
 		~Intern();
 
-		AForm* makeForm(std::string formName, std::string formTarget);
+		AForm* makeForm(const std::string& formName, const std::string& formTarget);
 };

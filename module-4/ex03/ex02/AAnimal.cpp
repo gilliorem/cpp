@@ -143,3 +143,8 @@ void Cat::makeSound() const
 {
 	std::cout << "Meeeeaww\n";
 }
+
+int main()
+{
+	AAnimal a;
+}

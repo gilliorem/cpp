@@ -1,4 +1,4 @@
-CXX = c++
+CXX = c++ -g
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 AUDIOFLAGS = -lpthread -lm
 
