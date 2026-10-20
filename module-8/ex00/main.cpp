@@ -4,8 +4,8 @@
 #include "easyfind.hpp"
 #include <exception>
 
-#define MIN -10
-#define MAX 15
+#define MIN 0
+#define MAX 5
 
 int main()
 {
@@ -20,9 +20,9 @@ int main()
 	{
 		try
 		{
-			int res = easyfind(list, i);
+			int listRes = easyfind(list, i);
 			int vectRes = easyfind(vector, i);
-			std::cout << "list:" << res << std::endl;
+			std::cout << "list:" << listRes << std::endl;
 			std::cout << "vector: " << vectRes << std::endl;
 		}
 		catch (std::exception& e)
