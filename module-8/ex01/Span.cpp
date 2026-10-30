@@ -1,20 +1,21 @@
 #include "Span.hpp"
-#include <exception>
 #include <stdexcept>
 
-Span::Span(): _capacity(2), _size(0), _data(NULL), _N(_capacity){}
+Span::Span(): N(1), _size(0), _data(NULL){}
 
-Span::Span(unsigned long n):_capacity(n), _size(1), _data(new int[_capacity]), _N(n){
-	if ((unsigned long)_capacity >= HEAP_LIMIT)
-	       throw std::bad_alloc();
+Span::Span(unsigned int n):N(n), _size(0), _data(new int[N]){ }
+
+const char* ContainerSizeException::what() const throw()
+{
+	return "Oversize";
 }
+
 
 Span& Span::operator=(const Span& other)
 {
-	this->_data = other._data;
-	this->_capacity = other._capacity;
+	this->N = other.N;
 	this->_size = other._size;
-	this->_N = other._N;
+	this->_data = other._data;
 
 	return *this;
 }
@@ -55,12 +56,20 @@ int& Span::It::operator*()
 {
 	return *_p;
 }
-
-void Span::addNumbers(int *list, int start, int end)
+void Span::addNumber(int n)
 {
-	for (int i = start; i <= end; i++)
+	if (this->_size >= N)
+		throw ContainerSizeException(); 
+	this->_data[this->_size] = n;
+	this->_size++;
+}
+
+void Span::addNumbers(Span::It begin, Span::It end)
+{
+	while (begin != end)
 	{
-		addNumber(list[i]);
+		addNumber(*begin);
+		begin++;
 	}
 }
 
@@ -72,30 +81,11 @@ Span::It Span::begin(void)
 
 Span::It Span::end(void)
 {
-	It it(this->_data + (this->_size));
+	It it(this->_data + (this->N));
 	return it;
 }
 
-void Span::addNumber(int n)
-{
-	if (this->_size >= this->_capacity)
-	{
-		if ((this->_capacity) >= HEAP_LIMIT)
-			throw std::bad_alloc();
-		this->_capacity *= 2;
-		int* tmp = new int[this->_capacity];
-		for (unsigned int i = 0; i < this->_size; i++)
-		{
-			tmp[i] = this->_data[i];
-		}
-		delete []_data;
-		this->_data = tmp;
-	}
-	this->_data[this->_size] = n;
-	this->_size++;
-}
-
-int Span::shortestSpan()
+unsigned int Span::shortestSpan()
 {
 	{
 		if (this->_size <= 1)
@@ -125,7 +115,7 @@ int Span::shortestSpan()
 	}
 }
 
-int Span::longestSpan()
+unsigned int Span::longestSpan()
 {
 	if (this->_size <= 1)
 		throw std::logic_error("Missing at least one element in the Span.");

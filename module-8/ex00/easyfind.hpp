@@ -1,21 +1,21 @@
-#include <iostream>
-class MyException : public std::exception
+#include <exception>
+#include <algorithm>
+
+class NotFoundException: public std::exception
 {
 	public:
 		virtual const char* what() const throw()
 		{
-			return "number could not be find in the container!\n"; 
+			return "Value not found";
 		}
 };
 
 template <typename T>
-int easyfind(T &c, int n1)
+typename T::iterator easyfind(T &c, int value)
 {
-	typedef typename T::iterator It;
-	for (It it = c.begin(); it != c.end(); ++it)
-	{
-		if (*it == n1)
-			return *it;
-	}
-	throw MyException();
+	typename T::iterator it;
+	it = std::find(c.begin(), c.end(), value);
+	if (it == c.end())
+		throw NotFoundException();
+	return it;
 }

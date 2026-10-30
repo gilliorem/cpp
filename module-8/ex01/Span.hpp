@@ -1,20 +1,21 @@
-#include <vector>
 #include <cstdlib>
-#include <iostream>
+#include <iterator>
 
-//#define HEAP_LIMIT 343
-#define HEAP_LIMIT 34359738
+class ContainerSizeException: public std::exception
+{
+	public:
+		virtual const char* what() const throw();
+};
 
 class Span
 {
 	private:
-		unsigned long _capacity;
+		unsigned int N; // maximum capacity
 		unsigned int _size;
 		int* _data;
-		unsigned int _N;
 	public:
 		Span();
-		Span(unsigned long n);
+		Span(unsigned int n);
 		Span(const Span& other);
 		Span& operator=(const Span& other);
 
@@ -35,9 +36,9 @@ class Span
 		};
 
 		void addNumber(int n);
-		void addNumbers(int *list, int start, int end);
-		int shortestSpan();
-		int longestSpan();
+		void addNumbers(Span::It begin, Span::It end);
+		unsigned int shortestSpan();
+		unsigned int longestSpan();
 
 		It begin(void);
 		It end(void);

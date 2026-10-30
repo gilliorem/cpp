@@ -1,91 +1,54 @@
 #include "Span.hpp"
 #include <iostream>
-#include <vector>
 #include <exception>
 
 int main()
 {
-	Span sp;
-	try
-	{
-		sp = 1;
-	}
-	catch(std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	try
-	{
-		sp.addNumber(10);
-	}
-	catch(std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	try
-	{
-		sp.shortestSpan();
-	}
-	catch(std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	//std::cout << sp[0] << std::endl;
-	try
-	{
-		for (unsigned long i = 0; i < 3435974; i++)
-		{
-			sp.addNumber(i);
-		}
-	}
-	catch(std::bad_alloc& ba)
-	{
-		std::cout << "Exception caught: " << ba.what() << std::endl;
-		std::cerr << "Error: program exceding heap allocation limit\n";
-	}
-	sp.addNumber(6);
-	sp.addNumber(3);
-	sp.addNumber(17);
-	sp.addNumber(9);
-	sp.addNumber(11);
-
-	std::cout << sp.longestSpan() << std::endl;
-	std::cout << sp.shortestSpan() << std::endl;
-
-	Span container(3);
-
-	try
-	{
-		for (int i = 0; i < 20000; i++)
-		{
-			container.addNumber(i);
-		}
-	}
-	catch(std::bad_alloc& ba)
-	{
-		std::cout << "Exception caught: " << ba.what() << std::endl;
-		std::cerr << "Error: program exceding heap allocation limit";
-	}
-
+	Span a(1);
+	Span b(10);
+	for (int i = 0; i < 10; i++)
+		b.addNumber(i);
+	Span c(10);
 	
-	std::cout << "longest span:" << container.longestSpan() << std::endl;
-	std::cout << "shortest span:" << container.shortestSpan() << std::endl;
+	a.addNumber(12);
 
-	Span span(4);
+	c.addNumbers(b.begin(), b.end());
 
-	for (int i = 0; i < 4; i++)
-		span.addNumber(i * 2);
-	for (Span::It it = span.begin(); it != span.end(); ++it)
+	try
 	{
-		std::cout << *it << ' ';
+		a.addNumber(43);
 	}
-	std::cout << '\n';
-
-	int list[] = {10,20,30,40,50};
-	span.addNumbers(list, 1, 3);
-	for (Span::It it = span.begin(); it != span.end(); ++it)
+	catch(std::exception& e)
 	{
-		std::cout << *it << ' ';
+		std::cout << e.what() << std::endl;
 	}
+	Span::It it;
 
+	it = a.begin();
+	std::cout << *it << std::endl;
+
+	unsigned int sSpan;
+	unsigned int lSpan;
+
+	try
+	{
+		sSpan = b.shortestSpan();
+	}
+	catch(std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	std::cout << sSpan << std::endl;
+
+	try
+	{
+		lSpan = b.longestSpan();
+		std::cout << lSpan << std::endl;
+	}
+	catch(std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	
+	return 0;
 }

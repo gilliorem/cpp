@@ -1,34 +1,41 @@
-#include <string>
+#include "easyfind.hpp"
+#include <iostream>
 #include <vector>
 #include <list>
-#include "easyfind.hpp"
-#include <exception>
-
-#define MIN 0
-#define MAX 5
 
 int main()
 {
-	std::vector<int> vector;
-	std::list<int> list;
-	for (int i = 0; i < 5; ++i)
+	std::vector<int> a;
+	a.push_back(1);
+	a.push_back(5);
+	a.push_back(2);
+
+	std::vector<int>::iterator it;
+
+	try
 	{
-		list.push_back(i);
-		vector.push_back(i);
+		it = easyfind(a, 5);
+		std::cout << *it;
 	}
-	for (int i = MIN; i < MAX; ++i)
+	catch(std::exception& e)
 	{
-		try
-		{
-			int listRes = easyfind(list, i);
-			int vectRes = easyfind(vector, i);
-			std::cout << "list:" << listRes << std::endl;
-			std::cout << "vector: " << vectRes << std::endl;
-		}
-		catch (std::exception& e)
-		{
-			std::cout << e.what();
-		}
+		std::cout << e.what();
 	}
-	return 0;
+	std::cout << std::endl;
+
+	std::list<int> b;
+	b.push_back(1);
+	b.push_back(7);
+	b.push_back(3);
+	std::list<int>::iterator listIt;
+
+	try
+	{
+		listIt = easyfind(b, 3);
+		std::cout << *listIt << std::endl;
+	}
+	catch(std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 }
