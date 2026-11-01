@@ -16,6 +16,7 @@ template <typename T>
 class MutantStack: public std::stack<T>
 {
 	public:
+		
 		typename std::stack<T>::container_type::iterator iterator;
 		typename std::stack<T>::container_type::const_iterator const_iterator;
 		
@@ -32,8 +33,20 @@ class MutantStack: public std::stack<T>
 		}
 		~MutantStack() {}
 
-		typename std::stack<T>::container_type begin()
+		typename std::stack<T>::container_type::iterator begin()
 		{
 			return this->c.begin();
+		}
+		typename std::stack<T>::container_type::iterator end()
+		{
+			return this->c.end();
+		}
+		typename std::stack<T>::container_type::const_iterator begin() const
+		{
+			return this->c.begin();
+		}
+		typename std::stack<T>::container_type::const_iterator end() const
+		{
+			return this->c.end();
 		}
 };

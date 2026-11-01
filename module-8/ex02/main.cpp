@@ -9,7 +9,11 @@ int main()
 	b.push(1);
 	b.push(2);
 
-	std::cout << b.begin() << std::endl;
+	std::stack<int>::container_type::iterator it;
+	it = b.begin();
+	std::cout << *it << std::endl;
+	it = b.end() - 1;
+	std::cout << *it << std::endl;
 
 	return 0;
 
