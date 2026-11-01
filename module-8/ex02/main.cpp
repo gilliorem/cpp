@@ -8,14 +8,8 @@ int main()
 	MutantStack <int>b;
 	b.push(1);
 	b.push(2);
-	b.print();
 
-	MutantStack<int>::It it; 
-
-	MutantStack <std::string> s;
-	s.push("Hello");
-	s.push("world!");
-	s.print();
+	std::cout << b.begin() << std::endl;
 
 	return 0;
 

@@ -16,23 +16,24 @@ template <typename T>
 class MutantStack: public std::stack<T>
 {
 	public:
-		void print()
+		typename std::stack<T>::container_type::iterator iterator;
+		typename std::stack<T>::container_type::const_iterator const_iterator;
+		
+		MutantStack() {}
+		MutantStack(const MutantStack& other): iterator(other.iterator), const_iterator(other.const_iterator)
+		{  }
+		MutantStack& operator=(const MutantStack& other)
 		{
-			for (size_t i = 0; i < std::stack<T>::size(); i++)
-				std::cout << std::stack<T>::c[i] << " ";
-			std::cout << std::endl;
+			if (other == this)
+				return *this;
+			this->iterator = other.iterator;
+			this->const_iterator = other.const_iterator;
+			return *this;
 		}
+		~MutantStack() {}
 
-	class It: public std::iterator<std::input_iterator_tag, T>
-	{
-		private:
-			T* _p;
-		public:
-			It()
-			{
-				_p = NULL;
-			}
-			It(T* x): _p(x) {}
-	};
+		typename std::stack<T>::container_type begin()
+		{
+			return this->c.begin();
+		}
 };
-

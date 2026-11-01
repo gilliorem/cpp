@@ -1,9 +1,10 @@
-CXX = C++
+CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = mutant
 
 SOURCES = main.cpp 
+HEADERS = MutantStack.hpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
